@@ -1,0 +1,12 @@
+FROM node:alpine
+
+WORKDIR '/app'
+
+RUN apk add --update yarn
+
+COPY package.json .
+RUN yarn
+
+COPY ./ ./
+
+CMD ["yarn", "start"]
