@@ -14,3 +14,22 @@ before_install:
 # using -- --coverage to make yarn test actually exit
 script:
   - docker run teamdale/docker-react yarn test -- --coverage
+
+
+# Travis comes preconfigured for some providers. EBS is one of them
+# Region is the aws region
+# app is just whatever you called it in ebs
+# env is whatever is at the end of those breadcrumbs in ebs
+# bucket_path is just the app name.
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-southeast-2"
+  app: "docker-react"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-ap-southeast-2-002476225857"
+  bucket_path: "docker"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET"
