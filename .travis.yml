@@ -1,0 +1,16 @@
+# docker needs sudo
+sudo: required
+
+# install docker for us in the travis environment
+services:
+  - docker
+
+# docker build gives an ID, so you need to tag it in travis
+# You can then refer to it later.
+# Also you can call it anything, it only gets used inside this travis process
+before_install:
+  - docker build -t teamdale/docker-react -f Dockerfile.dev ./
+
+# using -- --coverage to make yarn test actually exit
+script:
+  - docker run teamdale/docker-react yarn test -- --coverage
