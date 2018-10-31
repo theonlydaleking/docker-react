@@ -1,12 +1,12 @@
 
 # Tag it as "builder"
 FROM node:alpine as builder
-WORKDIR '/app'
+WORKDIR "/app"
 RUN apk add --update yarn
-COPY package.json ./
+COPY ./package.json .
 RUN yarn
 COPY . .
-CMD yarn build
+RUN ["yarn", "build"]
 
 # From terminates the previous from block
 FROM nginx
