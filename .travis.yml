@@ -9,11 +9,11 @@ services:
 # You can then refer to it later.
 # Also you can call it anything, it only gets used inside this travis process
 before_install:
-  - docker build -t teamdale/docker-react -f Dockerfile.dev ./
+  - docker build -t teamdale/docker-react2 -f Dockerfile.dev ./
 
 # using -- --coverage to make yarn test actually exit
 script:
-  - docker run teamdale/docker-react yarn test -- --coverage
+  - docker run teamdale/docker-react2 yarn test -- --coverage
 
 
 # Travis comes preconfigured for some providers. EBS is one of them
