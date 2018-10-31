@@ -3,9 +3,9 @@
 FROM node:alpine as builder
 WORKDIR '/app'
 RUN apk add --update yarn
-COPY package.json .
+COPY package.json ./
 RUN yarn
-COPY ./ ./
+COPY . .
 CMD yarn build
 
 # From terminates the previous from block
