@@ -1,6 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 import logo from './logo.svg';
 import './App.css';
+
+// import Api from './Api'
+const Api = lazy(() => import('./Api'))
+const Cat = lazy(() => import('./Cat'))
+
 
 class App extends Component {
   render() {
@@ -19,8 +24,16 @@ class App extends Component {
           >
             Learn React
           </a>
+          <Suspense fallback={<div className="">...Loading</div>}>
+            <Cat />
+            <Api />
+
+          </Suspense>
+
         </header>
+
       </div>
+
     );
   }
 }
